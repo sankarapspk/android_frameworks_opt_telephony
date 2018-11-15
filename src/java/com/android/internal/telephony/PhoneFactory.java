@@ -227,8 +227,16 @@ public class PhoneFactory {
                 sMadeDefaults = true;
 
                 Rlog.i(LOG_TAG, "Creating SubInfoRecordUpdater ");
+<<<<<<< HEAD
                 sSubInfoRecordUpdater = telephonyComponentFactory.makeSubscriptionInfoUpdater(
                         BackgroundThread.get().getLooper(), context, sPhones, sCommandsInterfaces);
+=======
+                sSubInfoRecordUpdater = sContext.getResources().getBoolean(com.android.internal.R.bool.config_oldQtiTelephony)
+                        ? telephonyComponentFactory.makeSubscriptionInfoUpdater(
+                                context, sPhones, sCommandsInterfaces)
+                        : telephonyComponentFactory.makeSubscriptionInfoUpdater(
+                                BackgroundThread.get().getLooper(), context, sPhones, sCommandsInterfaces);
+>>>>>>> a32add9... PhoneFactory: make old qti telephony optional [1/2]
                 SubscriptionController.getInstance().updatePhonesAvailability(sPhones);
 
                 // Start monitoring after defaults have been made.
